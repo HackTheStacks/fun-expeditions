@@ -1,3 +1,4 @@
+import csv
 from flask import Flask
 from flask import render_template, request, jsonify, redirect
 from database import load_people, load_keywords, load_expeditions, Expedition
@@ -81,6 +82,11 @@ def add_expedition_request():
     expedition = Expedition(expedition_id, expedition_name, expedition_desc, [], fieldnote_location,
                             '{} - {}'.format(start_year, end_year), '{}: {}'.format(fieldnote_author, fieldnote_desc))
     expeditions[expedition_id] = expedition
+    with open("output/expedition_%010d.tsv" % expedition_hash, 'wb') as dst:
+        writer = csv.writer(dst, delimiter='\t')
+        for key in request.form.keys():
+            value = request.form.get(key)
+            writer.writerow((key, value))
     return redirect('/expedition/new')
 
 if __name__ == '__main__':

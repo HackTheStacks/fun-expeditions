@@ -1,39 +1,102 @@
 {% extends 'base.html' %}
 
 {% block style %}
+<style>
 
+    form {
+        margin: 100px 0;
+        background: rgb(245, 245, 245);
+        padding: 25px 50px;
+    }
+
+    legend {
+        font: 35px sans-serif;
+        font-weight: 300;
+    }
+
+    fieldset {
+        margin: 25px 0;
+    }
+
+    label {
+        vertical-align: top;
+        text-align: right;
+        font: 25px sans-serif;
+        width: 300px;
+        padding: 10px 25px;
+    }
+
+    input {
+        vertical-align: top;
+        font: 20px sans-serif;
+        font-weight: 300;
+        padding: 5px;
+        margin: 10px 0;
+        width: 700px;
+    }
+
+    input[type='submit'] {
+        display: block;
+        font: 35px sans-serif;
+        font-weight: 300;
+        text-align: center;
+        padding: 25px 50px;
+        background: rgba(100, 100, 200, 0.5);
+        color: white;
+        outline: none;
+        border: none;
+        -webkit-transition: 0.5s;
+        margin: auto;
+        margin-top: 25px;
+    }
+
+    input[type='submit']:hover {
+        -webkit-transform: scale(1.2);
+    }
+
+    textarea {
+        font: 20px sans-serif;
+        vertical-align: top;
+        width: 500px;
+        min-height: 125px;
+        padding: 10px;
+    }
+
+</style>
 {% endblock %}
 
 {% block content %}
 <div class="container-fluid">
     <div class="row">
-    </div>
-    <form action="/expedition/new" method="POST">
-        <fieldset>
-            <legend>Expedition:</legend>
-            <label for="name"> Name</label>
-            <input type="text" name="ename" id="name" value="My lovely expedition"><br>
-            <label for="description">Description</label>
-            <textarea type="text" name="desc" id="description">A fun expedition</textarea><br>
-            <label for="start_year"> Start Year</label>
-            <input type="text" name="syear" id="start_year" value="2012"><br>
-            <label for="end_year"> End Year</label>
-            <input type="text" name="eyear" id="end_year" value="2015"><br>
-        </fieldset>
+        <div class="col-md-2"></div>
+        <form action="/expedition/new" method="POST" class="col-md-8">
+            <fieldset>
+                <legend>Expedition:</legend>
+                <label for="name"> Name</label>
+                <input type="text" name="ename" id="name" value="The Hack-the-Stacks Expedition"><br>
+                <label for="description">Description</label>
+                <textarea type="text" name="desc" id="description">What a great expedition!</textarea><br>
+                <label for="start_year"> Start Year</label>
+                <input type="text" name="syear" id="start_year" value="2013"><br>
+                <label for="end_year"> End Year</label>
+                <input type="text" name="eyear" id="end_year" value="2016"><br>
+            </fieldset>
 
-        <fieldset>
-            <legend>Field Note:</legend>
-            <label for="fieldnote_title">Title</label>
-            <input type="text" name="ftitle" id="fieldnote_title" value="My Fav Notebok"><br>
-            <label for="fieldnote_description">Description</label>
-            <textarea type="text" name="fdesc" id="fieldnote_description">Please take care of my great notebook.</textarea><br>
-            <label for="fieldnote_author">Author</label>
-            <input type="text" name="fauthor" id="fieldnote_author" value="Krutika Shetty"><br>
-            <label for="location">Location</label>
-            <input type="text" name="flocation" id="location" value="AMNH"><br>
-            <input type="submit" value="Submit">
-        </fieldset>
-    </form>
+            <fieldset>
+                <legend>Field Note:</legend>
+                <label for="fieldnote_title">Title</label>
+                <input type="text" name="ftitle" id="fieldnote_title" value="My Field Notebook"><br>
+                <label for="fieldnote_description">Description</label>
+                <textarea type="text" name="fdesc" id="fieldnote_description">My field notebook is available at the museum.</textarea><br>
+                <label for="fieldnote_author">Author</label>
+                <input type="text" name="fauthor" id="fieldnote_author" value="Charles Darwin"><br>
+                <label for="location">Location</label>
+                <input type="text" name="flocation" id="location" value="AMNH"><br>
+                <input type="submit" value="Check In">
+            </fieldset>
+        </form>
+        <div class="col-md-2"></div>
+    </div>
 </div>
 {% endblock %}
 
