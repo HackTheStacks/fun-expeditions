@@ -1,6 +1,6 @@
 from flask import Flask
-from flask import render_template, request, jsonify
-from database import load_people, load_keywords, load_expeditions
+from flask import render_template, request, jsonify, redirect
+from database import load_people, load_keywords, load_expeditions, Expedition
 from collections import defaultdict
 
 import sys
@@ -56,9 +56,32 @@ def search_people():
             for xeac_id in keywords[keyword]:
                 if xeac_id not in history and xeac_id in people:
                     person = people[xeac_id]
+                    history.add(xeac_id)
                     results.append(treat(render_template('person.html', person=person, expeditions=expeditions), keyword))
     return jsonify({"results": results})
 
+
+@app.route('/expedition/new', methods=['GET'])
+def add_expedition():
+    return render_template("add.html")
+
+
+@app.route('/expedition/new', methods=['POST'])
+def add_expedition_request():
+    expedition_name = request.form.get('ename')
+    expedition_desc = request.form.get('desc')
+    start_year = request.form.get('syear')
+    end_year = request.form.get('eyear')
+    fieldnote_title = request.form.get('ftitle')
+    fieldnote_desc = request.form.get('fdesc')
+    fieldnote_location = request.form.get('flocation')
+    fieldnote_author = request.form.get('fauthor')
+    expedition_hash = abs(hash((expedition_name, expedition_desc, fieldnote_title))) % 10000000
+    expedition_id = 'expedition_%010d' % expedition_hash
+    expedition = Expedition(expedition_id, expedition_name, expedition_desc, [], fieldnote_location,
+                            '{} - {}'.format(start_year, end_year), '{}: {}'.format(fieldnote_author, fieldnote_desc))
+    expeditions[expedition_id] = expedition
+    return redirect('/expedition/new')
 
 if __name__ == '__main__':
     app.run()
