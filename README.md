@@ -8,7 +8,7 @@
 4. Follow relations between expeditions and researchers.
 5. Add a new expedition.
 
-## Video
+## Presentation Video
 
 [Presentation Video on Google Drive](https://drive.google.com/open?id=0BzvZVe6hZexsVExTUE85dFpoSUk)
 
