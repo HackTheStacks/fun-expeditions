@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block style %}
+
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+    </div>
+    <form action="/expedition/new" method="POST">
+        <fieldset>
+            <legend>Expedition:</legend>
+            <label for="name"> Name</label>
+            <input type="text" name="ename" id="name" value="My lovely expedition"><br>
+            <label for="description">Description</label>
+            <textarea type="text" name="desc" id="description">A fun expedition</textarea><br>
+            <label for="start_year"> Start Year</label>
+            <input type="text" name="syear" id="start_year" value="2012"><br>
+            <label for="end_year"> End Year</label>
+            <input type="text" name="eyear" id="end_year" value="2015"><br>
+        </fieldset>
+
+        <fieldset>
+            <legend>Field Note:</legend>
+            <label for="fieldnote_title">Title</label>
+            <input type="text" name="ftitle" id="fieldnote_title" value="My Fav Notebok"><br>
+            <label for="fieldnote_description">Description</label>
+            <textarea type="text" name="fdesc" id="fieldnote_description">Please take care of my great notebook.</textarea><br>
+            <label for="fieldnote_author">Author</label>
+            <input type="text" name="fauthor" id="fieldnote_author" value="Krutika Shetty"><br>
+            <label for="location">Location</label>
+            <input type="text" name="flocation" id="location" value="AMNH"><br>
+            <input type="submit" value="Submit">
+        </fieldset>
+    </form>
+</div>
+{% endblock %}
+
+{% block script %}
+
+
+{% endblock %}
